@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Herons Formula</string>
+    <string name="input_error">Please enter a true value. Ex: 9.11.16 or 5.4.3.</string>
+</resources>
