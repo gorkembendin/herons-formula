@@ -1,6 +1,12 @@
+/**
+ *
+ * Provides functions for calculating the area and the semi-perimeter of an triangle.
+ *
+ * Created by Görkem Bendin on 16/10/2020.
+ */
 package com.gb.heronsformula.util;
 
-public class CustomTriangle {
+public class Triangle {
     private static final int DIVIDER_BY_TWO = 2;
 
     /**
@@ -13,7 +19,7 @@ public class CustomTriangle {
      */
     public static double getArea(double lengthOfEdgeA, double lengthOfEdgeB, double lengthOfEdgeC) {
         double semiPerimeter = getSemiPerimeter(lengthOfEdgeA, lengthOfEdgeB, lengthOfEdgeC);
-        return CustomMath.sqrt((semiPerimeter * (semiPerimeter - lengthOfEdgeA) * (semiPerimeter - lengthOfEdgeB) * (semiPerimeter - lengthOfEdgeC)));
+        return Math.sqrt((semiPerimeter * (semiPerimeter - lengthOfEdgeA) * (semiPerimeter - lengthOfEdgeB) * (semiPerimeter - lengthOfEdgeC)));
     }
 
     /**

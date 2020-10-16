@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Herons Formula</string>
+    <string name="app_name">Heron\'s Formula Calculator</string>
     <string name="input_error">Please enter a true value. Ex: 9.11.16 or 5.4.3.</string>
+    <string name="wrong_value">Values are wrong so cannot be computed!</string>
+    <string name="clear_result_message">…</string>
 </resources>

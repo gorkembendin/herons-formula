@@ -1,6 +1,15 @@
+/**
+ *
+ * Provides Babylonian square-root algorithm and rounding decimal places functionality.
+ *
+ * Created by Görkem Bendin on 16/10/2020.
+ */
 package com.gb.heronsformula.util;
 
-public class CustomMath {
+import android.util.Log;
+
+public class Math {
+    private static final String TAG = "HeronsFormulaCalculator";
     private static final double PRECISION_MAX = 0.000001;
     private static final double PRECISION_MIN = 0.0;
     private static final double SQRT_INITIAL_VALUE = 600;
@@ -8,17 +17,29 @@ public class CustomMath {
     private static final int DECIMAL_PLACES_MAX = 13;
     private static final int TRICKY_NUMBER_MULTIPLIER = 10;
     private static final int ROUND_DECIMAL_INITIAL_VALUE = 1;
+    private static final int DEADLOCK_CHECK_COUNT = 3;
+    private static final int DEADLOCK_ERROR = -1;
     private static final int ZERO = 0;
 
     /**
-     * Calculates the square root of a number.
+     * Calculates the square root of a number using Babylonian square-root algorithm.
      *
      * @param number The number whose square root to be calculated.
      * @return Returns the calculated square root of the given number.
      */
     public static double sqrt(double number) {
         double result = SQRT_INITIAL_VALUE;
+        double previousResult = ZERO;
+        int deadlockCheckCounter = ZERO;
         while (true) {
+            if ((result == previousResult) ||
+                    (result < ZERO)) {
+                if ((++deadlockCheckCounter) >= DEADLOCK_CHECK_COUNT) {
+                    Log.e(TAG, "DEADLOCK ERROR!");
+                    return DEADLOCK_ERROR;
+                } /* else not needed */
+            }
+            previousResult = result;
             result = DIVIDER_HALF * (result + (number / result));
             result = roundDecimalPlaces(result, DECIMAL_PLACES_MAX);
             if (((number - roundDecimalPlaces((result * result), DECIMAL_PLACES_MAX)) <= PRECISION_MAX) &&
